@@ -1,5 +1,6 @@
 # ML training data
 data/drebin-feature-space-transcendent
+data/extended-features
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
