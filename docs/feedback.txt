@@ -1,0 +1,31 @@
+Dear Changjoon,
+ 
+ 
+In general, the project scope now looks good. I appreciate you implemented my feedback from one of the last group meetings, where I advised you to narrow down the scope much more.
+ 
+- Structure
+                - Please use a clearer chapter/section structure, with appropriate numbering. At the moment, the headings are a bit confusing.
+                - Please consider adding also a table of content, i.e., an index with the information on the paper itself.
+- Style
+                - Citations usually go before a dot, like this [1].
+- General aim:
+                - "This project will explore the use of existing explanation methods, such as SHAP and LIME, to enhance our understanding of the learning process within classifiers." ---> This is half of the objective: you also need to train ML-based classifiers, and focus on the subset of features assigned to your project variant  (if I remember correctly, you were assigned "API" features)
+- Objective 2: "impact of explanations" --> I think it is a minor imprecision in the use of terminology, it is not 'impact of explanations' --> the explanations can be used to analyze the most important features for the decision of the model.
+- Dataset: it is _not_ the DREBIN dataset. It is a dataset from the "Transcending Transcend" paper at IEEE S&P 2022 (proper citation is in the github repo). Part of the confusion in the naming may arise from the fact that it is the "DREBIN feature space", but it is not the same dataset as the DREBIN paper (NDSS 2014).
+- The description of the DREBIN feature sets would usually be in a 'background chapter', not in the introduction itself. Also, be sure to not plagiarize sentences from the original paper (I have not checked, but I know it can be tempting to reuse sentences for the description of the features, but you should re-elaborate it in your own words).
+- Technical specifications and methodologies
+                - If you are planning to use 'data visualizations', what are you planning to use? There is no information here.
+                - ML models: I think it would be sufficient to pick two that you can understand and motivate very well. Out of the four, I would suggest to not use Naive Bayes mostly because it is hard (in my experience) to make it work well. It is fine if you want to keep all four, just remember that you need to provide some critical analysis for all of them if you then discuss their performance.
+                - Performance metrics: Accuracy is misleading in imbalanced dataset, hence I would recommend not using it. Read "base rate fallacy" in intrusion detection, to understand more.
+                - Model explanation with SHAP: it is fine to use SHAP, I would recommend it, but in the first part of the report you always mention "SHAP or LIME": I would just be consistnet.
+- Background
+                - When you nominate "DREBIN" the first time, that's where you should put a first citation of DREBIN (not only at the very end of the paragraph).
+                - It is unclear to me why you have a separate section (?) called "CRITICAL REVIEW OF LITERATURE": this should be integrated in the analysis of the state of the art itself. You do not necessarily need to separate it as a clearly separate section. Or maybe you wanted to write a section like "Limitations of existing works"?
+                - You do focus on the limitations of static analysis, but you do not solve 'this' in the dissertation itself. I would try to focus on limitations that you may be trying to tackle, so you would position better your work.
+                - The analysis of what is in the literature review is generally good, but you need to evaluate more works in the field of malware detection. You mostly talk about DREBIN alone, and also other parts (e.g., overfitting) are without citations. You should add more citations, to substantiate your claims and considerations. Moreover, you should try to clarify better how your work separates from the state of the art.
+                - 5 citations overall in the report are definitely too little for a preliminary report, and even for a dissertation. A good average would be to have 20-25 citations minimum. You need to substantiate your claim with evidence from related literature. And it is your responsibility to find works related to your own project topic.
+- Schedule
+                - Typo: King's "Collage" --> be careful to avoid mispells/typos in the final report
+                - I am not sure I fully understand the schedule, it is very high-level and some rows are repeated. However, for what I understand it generally looks feasible.
+                - However, one thing I would strongly recommend is to not delay the 'report writing' until the very end. This is because you will forget most of the things you have done, and if you rush the writing you would get a lower mark. Instead, i would suggest to start sketching the content of all sections, so you can also realize whether there are logical holes in your report, and keep track of how many experiments you are including.
+                - Also, periodically revise this plan. We will meet on May 20th and we'll see whether you indeed manage to begin the testing part. It is is important to keep realistic planning expectations, and adapt them based on what you observe over time.
