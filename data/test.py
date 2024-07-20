@@ -1,91 +1,51 @@
-# Train and evaluate the Linear SVM model
-(
-    svm_model,
-    svm_accuracy,
-    svm_precision,
-    svm_recall,
-    svm_f1,
-    svm_roc_auc,
-    svm_average_precision,
-) = train_and_evaluate_model(
-    models.get("Linear SVM"), X_train, y_train, X_test, y_test, "Linear SVM"
-)
+## Parameters: XGBoost
+xgb_parameters = {
+    "n_estimators": 200,
+    "learning_rate": 0.05,
+    "max_depth": 4,
+    "min_child_weight": 3,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+}
 
+## Parameters: Linear SVM
+svm_parameters = {
+    "max_iter": 50000,
+}
 
-class TestLinearSVM:
-    def test_accuracy(self):
-        assert svm_accuracy > 0.5
+## Update specific models with desired parameters
+updated_models = []
+for model in models:
+    if model.name == "XGBoost":
+        updated_model = Model(model.name, xgboost(**xgb_parameters))
+    elif model.name == "Linear SVM":
+        updated_model = Model(
+            model.name, linear_support_vector_machine(**svm_parameters)
+        )
+    else:
+        updated_model = model
+    updated_models.append(updated_model)
 
-    def test_precision(self):
-        assert svm_precision > 0.5
+for model in updated_models:
+    model.train_model(X_train, y_train)
+    (
+        model,
+        accuracy,
+        precision,
+        recall,
+        f1,
+        cm,
+        roc_auc,
+        fpr,
+        tpr,
+        precision_curve,
+        recall_curve,
+        average_precision,
+    ) = model.evaluate_model(X_test, y_test)
 
-    def test_recall(self):
-        assert svm_recall > 0.5
-
-    def test_f1(self):
-        assert svm_f1 > 0.5
-
-    def test_roc_auc(self):
-        assert svm_roc_auc > 0.5
-
-    def test_average_precision(self):
-        assert svm_average_precision > 0.5
-
-
-testlinearvsm = TestLinearSVM()
-
-var = 10
-
-var = 20
-
-var = 20
-var = 20
-var = 20
-var = 20
-var = 20
-var = 20
-var = 20
-
-# Print the metrics
-print(f"Linear SVM Metrics:")
-print(f"  Accuracy: {svm_accuracy:.4f}")
-print(f"  Precision: {svm_precision:.4f}")
-print(f"  Recall: {svm_recall:.4f}")
-print(f"  F1 Score: {svm_f1:.4f}")
-print(f"  ROC AUC: {svm_roc_auc:.4f}")
-print(f"  Average Precision: {svm_average_precision:.4f}")
-
-var = 20
-var = 20
-var = 20
-var = 20
-var = 20
-var = 20
-print(f"  Precision: {svm_precision:.4f}")
-print(f"  Precision: {svm_precision:.4f}")
-print(f"  Recall: {svm_recall:.4f}")
-print(f"  F1 Score: {svm_f1:.4f}")
-print(f"  ROC AUC: {svm_roc_auc:.4f}")
-print(f"  Average Precision: {svm_average_precision:.4f}")
-print(f"  Recall: {svm_recall:.4f}")
-print(f"  F1 Score: {svm_f1:.4f}")
-print(f"  ROC AUC: {svm_roc_auc:.4f}")
-print(f"  Average Precision: {svm_average_precision:.4f}")
-var = 20
-print(f"  Precision: {svm_precision:.4f}")
-print(f"  Precision: {svm_precision:.4f}")
-print(f"  Precision: {svm_precision:.4f}")
-print(f"  Recall: {svm_recall:.4f}")
-print(f"  F1 Score: {svm_f1:.4f}")
-print(f"  ROC AUC: {svm_roc_auc:.4f}")
-print(f"  Average Precision: {svm_average_precision:.4f}")
-print(f"  Recall: {svm_recall:.4f}")
-print(f"  F1 Score: {svm_f1:.4f}")
-print(f"  ROC AUC: {svm_roc_auc:.4f}")
-print(f"  Average Precision: {svm_average_precision:.4f}")
-print(f"  Recall: {svm_recall:.4f}")
-print(f"  F1 Score: {svm_f1:.4f}")
-print(f"  ROC AUC: {svm_roc_auc:.4f}")
-print(f"  Average Precision: {svm_average_precision:.4f}")
-
-var = 30
+    print_metrics(
+        model, accuracy, precision, recall, f1, cm, roc_auc, average_precision
+    )
+    plot_results(
+        model, fpr, tpr, roc_auc, precision_curve, recall_curve, average_precision, cm
+    )
